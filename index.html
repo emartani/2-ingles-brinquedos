@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Caça‑Palavras — Toys</title>
+
+  <!-- Fonte Luckiest Guy -->
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Caça‑Palavras — Toys 🎲</h1>
+
+  <div id="instructions">
+    <h2>Instruções</h2>
+    <ol>
+      <li>Arraste pelas letras (horizontal/vertical) para formar a palavra.</li>
+      <li>Se não souber, clique no card do brinquedo para revelar a palavra.</li>
+      <li>Encontre as <strong>4 palavras</strong> da rodada para ganhar uma <strong>medalha</strong>! 🏅</li>
+    </ol>
+  </div>
+
+  <!-- Barra de status -->
+  <div id="statusBar">
+    <div class="score">Pontuação: <span id="score">0</span></div>
+    <div class="medals">Medalhas: <span id="medals"></span></div>
+  </div>
+
+  <!-- Nível (mantido na estrutura) -->
+  <div class="level-wrap">
+    <label for="nivel">Nível:</label>
+    <select id="nivel" onchange="gerarCacaPalavras()">
+      <option value="facil">Fácil (10×10)</option>
+      <option value="dificil">Difícil (13×13)</option>
+    </select>
+  </div>
+
+  <!-- Grid do caça-palavras -->
+  <div id="game-area-container">
+    <div id="cacaPalavrasContainer"></div>
+  </div>
+
+  <!-- Cards com as figuras -->
+  <div id="palavrasEncontrar">
+    <h2>Brinquedos da Rodada</h2>
+    <ul id="listaPalavras"></ul>
+    <button id="btnNovaRodada" style="display:none;">Próxima Rodada</button>
+  </div>
+
+  <!-- Confete -->
+  <div id="confetti" aria-hidden="true"></div>
+
+  <!-- Sons (opcionais) -->
+  <audio id="click-sound"   src="sounds/click.mp3"   preload="auto"></audio>
+  <audio id="correct-sound" src="sounds/correct.mp3" preload="auto"></audio>
+  <audio id="wrong-sound"   src="sounds/wrong.mp3"   preload="auto"></audio>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>

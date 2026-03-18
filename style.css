@@ -1,0 +1,133 @@
+:root{
+  --brand:#007bff;
+  --brand-dark:#0056b3;
+  --ok:#28a745;
+  --warn:#ffc107;
+  --err:#dc3545;
+}
+
+/* Base */
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  font-family:'Luckiest Guy', cursive;
+  margin:20px;
+  background:#e6f7ff;
+  color:#222;
+}
+
+/* Títulos e instruções */
+h1{
+  text-align:center;
+  color:#8A2BE2;
+  margin:6px 0 4px;
+}
+#instructions{
+  text-align:center;
+  max-width:800px;
+  margin:0 auto 14px;
+}
+#instructions h2{ margin:0 0 6px; }
+
+/* Status (pontuação e medalhas) */
+#statusBar{
+  display:flex;
+  justify-content:center;
+  gap:28px;
+  align-items:center;
+  margin:8px 0 10px;
+  flex-wrap:wrap;
+}
+#statusBar .score{ font-size:1.2em; color:var(--brand-dark); }
+#statusBar .medals{ font-size:1.1em; color:#333; }
+#medals{ display:inline-flex; gap:4px; }
+
+/* Nível */
+.level-wrap{
+  display:flex; justify-content:center; align-items:center; gap:10px;
+  margin:12px 0 6px;
+}
+.level-wrap label{ font-size:1.05em; color:#4B0082; }
+#nivel{
+  padding:8px; font-size:1em; border:2px solid #FF69B4; border-radius:8px; cursor:pointer;
+}
+
+/* Grid */
+#game-area-container{
+  display:flex; justify-content:center; margin-top:10px;
+}
+.grid-container{
+  display:inline-grid; gap:5px; margin:18px auto; justify-content:center;
+}
+.cell{
+  width:36px; height:36px;
+  border:1.5px solid #4B0082; border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.2em; background:#fff; cursor:pointer; user-select:none;
+  transition:background .2s ease, transform .1s ease;
+}
+.cell:hover{ background:#cce5ff; }
+.selecionada{ background:#FF4500; color:#fff; }
+.found{ background:#32CD32 !important; color:#fff; }
+
+/* Cards (parte de baixo) */
+#palavrasEncontrar{ text-align:center; margin-top:14px; }
+#palavrasEncontrar h2{ color:#00BFFF; margin:0 0 10px; }
+#listaPalavras{
+  list-style:none; padding:0; margin:0;
+  display:flex; flex-wrap:wrap; justify-content:center; gap:12px;
+}
+#listaPalavras li img {
+  width: 100%;
+  height: 100%;
+  max-width: 100px;     /* pode ajustar para 110 ou 120 se quiser maior */
+  max-height: 100px;
+  
+  object-fit: contain;  /* 🔥 Faz a imagem CABER sem cortar */
+  object-position: center;
+
+  display: block;
+}
+#listaPalavras .word-text{ color:transparent; transition:color .25s ease-in-out; }
+#listaPalavras li.revealed .word-text{ color:#008B8B; }
+#listaPalavras li.found{ background:#32CD32; border-color:#2aa32a; }
+#listaPalavras li.found .word-text{ color:#064f06; }
+
+/* Botão Próxima Rodada */
+#btnNovaRodada{
+  margin-top:12px; background:var(--brand); color:#fff; border:none; border-radius:12px;
+  padding:12px 22px; font-size:1.05rem; cursor:pointer; box-shadow:0 4px 10px rgba(0,0,0,.18);
+  transition:background .25s ease, transform .2s ease;
+}
+#btnNovaRodada:hover{ background:var(--brand-dark); transform:translateY(-2px); }
+#btnNovaRodada:active{ transform:translateY(0); }
+
+/* Confete (camada fixa) */
+#confetti{
+  position:fixed; inset:0; pointer-events:none; z-index:9999; overflow:hidden;
+}
+@keyframes fall {
+  to { transform: translateY(120vh) rotate(720deg); opacity:.95; }
+}
+
+/* Feedback */
+.correct{ color:var(--ok); }
+.wrong{ color:var(--err); }
+
+/* ====== Responsivo ====== */
+@media (max-width: 768px){
+  body{ margin:14px; }
+  h1{ font-size:1.7rem; }
+  #instructions{ font-size:.98rem; }
+  .grid-container{ gap:3px; }
+  .cell{ width:30px; height:30px; font-size:1.05rem; }
+  #listaPalavras img{ width:72px; height:72px; }
+  .level-wrap label{ display:none; } /* simplifica no mobile */
+}
+
+@media (max-width: 480px){
+  h1{ font-size:1.5rem; }
+  #instructions{ font-size:.92rem; }
+  .cell{ width:26px; height:26px; font-size:.95rem; }
+  #listaPalavras img{ width:64px; height:64px; }
+}
